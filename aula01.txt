@@ -1,6 +1,7 @@
 Configuração do virtualbox
 1.a Interface - NAT - 10.
-2.a Interface - Bridge - Anotar o IP que for adquirido (comando ip addr) e toda vez que o instrutor mostrar 192.168.100.10 substituir pelo ip 
+2.a Interface - Host Only 
+3.a Interface - Bridge - (Caso nao funcione o host only) Anotar o IP que for adquirido (comando ip addr) e toda vez que o instrutor mostrar 192.168.100.10 substituir pelo ip 
 
 URL de informações de instação
 https://www.zabbix.com/documentation/3.4/manual/installation/install_from_packages/debian_ubuntu
