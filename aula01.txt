@@ -1,5 +1,5 @@
 Configuração do virtualbox
-1.a Interface - NAT 
+1.a Interface - NAT - 10.
 2.a Interface - Bridge - Anotar o IP que for adquirido (comando ip addr) e toda vez que o instrutor mostrar 192.168.100.10 substituir pelo ip 
 
 URL de informações de instação
