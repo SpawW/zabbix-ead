@@ -4,3 +4,7 @@ https://www.zabbix.com/documentation/3.4/manual/installation/install_from_packag
 
 
 ntpdate <ip_ntp> 172.16.300.1
+
+wget https://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+jessie_all.deb
+dpkg -i zabbix-release_3.4-1+jessie_all.deb
+apt update
