@@ -21,6 +21,12 @@ apt install zabbix-server-mysql
 # Frontend do Zabbix
 apt install zabbix-frontend-php
 
+## Criar banco de dados e usuario para o zabbix
+mysql -uroot
+mysql> create database zabbix character set utf8 collate utf8_bin;
+mysql> grant all privileges on zabbix.* to zabbix@localhost identified by 'zabbix';
+mysql> quit;
+
 # Inicialização do banco de dados do Zabbix-Server (usuario e senha zabbix) 
 zcat /usr/share/doc/zabbix-server-mysql/create.sql.gz | mysql -uzabbix -p zabbix
 
