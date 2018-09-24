@@ -1,3 +1,6 @@
 
 URL de informações de instação
 https://www.zabbix.com/documentation/3.4/manual/installation/install_from_packages/debian_ubuntu
+
+
+ntpdate <ip_ntp> 172.16.300.1
