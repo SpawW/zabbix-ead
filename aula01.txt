@@ -37,6 +37,10 @@ DBName=zabbix
 DBUser=zabbix
 DBPassword=zabbix
 
+# Iniciando o Zabbix Server
+service zabbix-server start
+update-rc.d zabbix-server enable
+
 ----------- Proxy ------------------------
 # Zabbix Proxy compilado para uso com MySQL
 apt install zabbix-proxy-mysql
