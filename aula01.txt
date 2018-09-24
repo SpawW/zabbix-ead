@@ -49,10 +49,17 @@ service apache2 restart
 
 # Configurar php
 vi  /etc/apache2/conf-enabled/zabbix.conf
+service apache2 restart
+
+# Instalar agente
+apt install zabbix-agent
+service zabbix-agent start
 
 ----------- Proxy ------------------------
 # Zabbix Proxy compilado para uso com MySQL
 apt install zabbix-proxy-mysql
+
+
 
 # Inicialização do banco de dados do Zabbix-Proxy (usuario e senha zabbix) 
 zcat /usr/share/doc/zabbix-proxy-mysql/schema.sql.gz | mysql -uzabbix -p zabbix
