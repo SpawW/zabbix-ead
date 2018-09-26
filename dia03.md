@@ -55,12 +55,20 @@
 | Groups             | Servers/Windows                   |
 | Agent Interfaces   | ip: 192.168.100.1                 |
 
-5) Instalar o agente Zabbix no servidor dns1 e dns2
+5) Instalar o agente Zabbix no servidor **dns1** e **dns2**
+
 ```
 wget https://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+jessie_all.deb
 dpkg -i zabbix-release_3.4-1+jessie_all.deb
 apt update
 apt install zabbix-agent
+apt install zabbix-get zabbix-sender
+```
+
+5.1) Instalar o agente Zabbix no servidor **Zabbix server**
+```
+apt install zabbix-agent
+apt install zabbix-get zabbix-sender
 ```
 
 6) Configurar o agente Zabbix no dns1 e dns2 para aceitar conexões do servidor de monitoração
@@ -72,6 +80,25 @@ Server=192.168.100.10
 ```
 service zabbix-agent restart
 ```
+
+6.1) Testar, a partir da linha de comando do **dns1**, a consulta ao total de memória do servidor **dns1** 
+
+```
+zabbix_get -s 127.0.0.1 -k'vm.memory.size[total]'
+```
+> Qual o valor retornado?
+
+6.2) Testar, a partir da linha de comando do **ZBX Server**, a consulta ao total de memória do servidor **dns1** 
+
+```
+zabbix_get -s 127.0.0.1 -k'vm.memory.size[total]'
+```
+> Qual valor retornado?
+
+6.3) Ajustar o arquivo de configuração do **dns1** e **dns2** para aceitar as requisições a partir do servidor que falhou.
+
+** Ajuste :-D ** 
+
 
 7) Atualizar template 000_ICMP para suportar customização do tempo da trigger de desastre no nível de host
 
