@@ -9,6 +9,7 @@
 | Groups             | Linux servers      | Linux servers        |
 | Groups             |                    | Zabbix server        |
 | Agent Interfaces   | ip: 192.168.100.14 | ip: 192.168.100.13   |
+| Templates          | 000_ICMP           | 000_ICMP             |
 
 > Caso seja necessário o arquivo [/dia03/momento_01.xml](/dia03/momento_01.xml) poderá ser importado para ter os dois novos hosts no estado esperado para este exercício.
 
@@ -40,9 +41,19 @@
 | Propriedade        | Valor                             |
 | ------------------ | --------------------------------- |
 | Name               | offline01                         |
+| Visible Name       |                                   |
 | Groups             | Servers/Windows                   |
 | Agent Interfaces   | ip: 192.168.100.99                |
 
+
+4.1) Clonar o host **dns2** para um novo host com os dados a seguir:
+
+| Propriedade        | Valor                             |
+| ------------------ | --------------------------------- |
+| Name               | estacao_noc                       |
+| Visible Name       |                                   |
+| Groups             | Servers/Windows                   |
+| Agent Interfaces   | ip: 192.168.100.1                 |
 
 5) Instalar o agente Zabbix no servidor dns1 e dns2
 ```
