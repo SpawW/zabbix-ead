@@ -60,6 +60,7 @@
 wget https://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+jessie_all.deb
 dpkg -i zabbix-release_3.4-1+jessie_all.deb
 apt update
+apt install zabbix-agent
 ```
 
 6) Configurar o agente Zabbix no dns1 e dns2 para aceitar conexões do servidor de monitoração
