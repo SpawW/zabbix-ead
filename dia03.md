@@ -31,9 +31,9 @@
 2) Renomear o grupo de hosts **Linux servers** para **Servers/Linux**
 
 3) Criar os grupos
-. **Servers/Windows**
-. **Network/Switchs**
-. **Network/Routers**
+* **Servers/Windows**
+* **Network/Switchs**
+* **Network/Routers**
 
 4) Clonar o host **dns2** para um novo host com os dados a seguir:
 
