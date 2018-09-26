@@ -29,9 +29,9 @@
 | Severity           | Disaster                                                 |
 | Expression         | {000_ICMP:icmpping[].sum(300)}=0                         |
 
-2) Renomear o grupo de hosts **Linux servers** para **Servers/Linux**
+3) Renomear o grupo de hosts **Linux servers** para **Servers/Linux**
 
-3) Criar os grupos
+3.1) Criar os grupos
 * **Servers/Windows**
 * **Network/Switchs**
 * **Network/Routers**
@@ -59,8 +59,7 @@
 
 > Caso seja necessário o arquivo [/dia03/windows_servers.xml](/dia03/windows_servers.xml) poderá ser importado para importar os gurpos e hosts até o momento deste exercício.
 
-5) Instalar o agente Zabbix no servidor **dns1** e **dns2**
-
+5) Instalar o agente Zabbix no servidor **dns1** e **dns2**.
 ```
 wget https://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+jessie_all.deb
 dpkg -i zabbix-release_3.4-1+jessie_all.deb
@@ -88,14 +87,14 @@ service zabbix-agent restart
 6.1) Testar, a partir da linha de comando do **dns1**, a consulta ao total de memória do servidor **dns1** 
 
 ```
-zabbix_get -s 127.0.0.1 -k'vm.memory.size[total]'
+zabbix_get -s 192.168.100.13 -k'vm.memory.size[total]'
 ```
 > Qual o valor retornado?
 
 6.2) Testar, a partir da linha de comando do **ZBX Server**, a consulta ao total de memória do servidor **dns1** 
 
 ```
-zabbix_get -s 127.0.0.1 -k'vm.memory.size[total]'
+zabbix_get -s 192.168.100.13 -k'vm.memory.size[total]'
 ```
 > Qual valor retornado?
 
