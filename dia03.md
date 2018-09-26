@@ -106,6 +106,9 @@ zabbix_get -s 192.168.100.13 -k'vm.memory.size[total]'
 
 ** Ajuste :-D ** 
 
+6.4) Associar DNS1 e DNS2 ao template de monitoração Linux
+
+
 7) Atualizar template 000_ICMP para suportar customização do tempo da trigger de desastre no nível de host
 
 | Propriedade        | Valor                                                                    |
