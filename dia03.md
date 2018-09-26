@@ -36,6 +36,7 @@
 . **Network/Routers**
 
 4) Clonar o host **dns2** para um novo host com os dados a seguir:
+
 | Propriedade        | Valor                             |
 | ------------------ | --------------------------------- |
 | Name               | offline01                         |
