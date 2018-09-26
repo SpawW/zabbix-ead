@@ -12,15 +12,45 @@
 
 > Caso seja necessário o arquivo [/dia03/momento_01.xml](/dia03/momento_01.xml) poderá ser importado para ter os dois novos hosts no estado esperado para este exercício.
 
+2.1) Atualizar template 000_ICMP adicionando trigger para avisar quando o PING falhar
 
-3) Instalar o agente Zabbix no servidor dns1 e dns2
+| Propriedade        | Valor                             |
+| ------------------ | --------------------------------- |
+| Name               | Servidor não responde à ping      |
+| Severity           | High                              |
+| Expression         | {000_ICMP:icmpping[].last()}=0    |
+
+2.2) Atualizar template 000_ICMP adicionando trigger para avisar quando o PING falhar por mais de 5 minutos
+
+| Propriedade        | Valor                                                    |
+| ------------------ | -------------------------------------------------------- |
+| Name               | Servidor não responde à ping a mais de 300 segundos      |
+| Severity           | Disaster                                                 |
+| Expression         | {000_ICMP:icmpping[].sum(300)}=0                         |
+
+2) Renomear o grupo de hosts **Linux servers** para **Servers/Linux**
+
+3) Criar os grupos
+. **Servers/Windows**
+. **Network/Switchs**
+. **Network/Routers**
+
+4) Clonar o host **dns2** para um novo host com os dados a seguir:
+| Propriedade        | Valor                             |
+| ------------------ | --------------------------------- |
+| Name               | offline01                         |
+| Groups             | Servers/Windows                   |
+| Agent Interfaces   | ip: 192.168.100.99                |
+
+
+5) Instalar o agente Zabbix no servidor dns1 e dns2
 ```
 wget https://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+jessie_all.deb
 dpkg -i zabbix-release_3.4-1+jessie_all.deb
 apt update
 ```
 
-4) Configurar o agente Zabbix no dns1 e dns2 para aceitar conexões do servidor de monitoração
+6) Configurar o agente Zabbix no dns1 e dns2 para aceitar conexões do servidor de monitoração
 
 ```
 vi /etc/zabbix/zabbix_agentd.conf
@@ -30,6 +60,24 @@ Server=192.168.100.10
 service zabbix-agent restart
 ```
 
+7) Atualizar template 000_ICMP para suportar customização do tempo da trigger de desastre no nível de host
 
-6) Importar template 101_APACHE
+| Propriedade        | Valor                                                                    |
+| ------------------ | ------------------------------------------------------------------------ |
+| Name               | Servidor não responde à ping a mais de {$000_ICMP_PERIODO} segundos      |
+| Severity           | Disaster                                                                 |
+| Expression         | {000_ICMP:icmpping[].sum({$000_ICMP_PERIODO})}=0                         |
+
+7.1) Atualizar a trigger **Servidor não responde à ping** para depender da trigger criada no item **7**
+
+| Propriedade        | Valor                                                                    |
+| ------------------ | ------------------------------------------------------------------------ |
+| Name               | Servidor não responde à ping a mais de {$000_ICMP_PERIODO} segundos      |
+| Severity           | Disaster                                                                 |
+| Expression         | {000_ICMP:icmpping[].sum({$000_ICMP_PERIODO})}=0                         |
+
+> O que aconteceu com o incidente que estava ativo?
+> Caso seja necessário o arquivo [/dia03/000_ICMP_momento_01.xml](/dia03/000_ICMP_momento_01.xml) poderá ser importado para ter o template **000_ICMP** no estado esperado para este exercício.
+
+
 
