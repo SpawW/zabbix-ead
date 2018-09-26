@@ -1,4 +1,4 @@
-1) Importar e inicializar a VM E1-SRV-DNS1 (DNS1) e E1-SRV-DNS2 (DNS2) 
+1) Importar e inicializar as VMs **E1-SRV-DNS1 (DNS1)** e **E1-SRV-DNS2 (DNS2)**
 
 2) Enquanto as VMs são importadas.. vamos criar dois novos hosts, usando os dados da tabela a seguir:
 
