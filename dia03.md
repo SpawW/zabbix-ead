@@ -1,4 +1,4 @@
-1) Importar a VM E1-SRV-DNS1 (DNS1)
+1) Importar e inicializar a VM E1-SRV-DNS1 (DNS1) e E1-SRV-DNS2 (DNS2) 
 
 2) Enquanto é importada... criar dois novos hosts, usando os dados da tabela a seguir:
 
@@ -17,7 +17,7 @@
 wget https://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+jessie_all.deb
 dpkg -i zabbix-release_3.4-1+jessie_all.deb
 apt update
-```[I'm a relative reference to a repository file]
+```
 
 4) Configurar o agente Zabbix no dns1 e dns2 para aceitar conexões do servidor de monitoração
 
