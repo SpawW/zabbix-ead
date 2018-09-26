@@ -3,7 +3,7 @@
 2) Enquanto as VMs são importadas.. vamos criar dois novos hosts, usando os dados da tabela a seguir:
 
 | Propriedade        | Host 1             | Host 2               |
-| ------------------ |:------------------:| --------------------:|
+| ------------------ | ------------------ | -------------------- |
 | Host Name          | dns2               | frontend2            |
 | Visible Name       | DNS Secundário     | Novo frontend Zabbix |
 | Groups             | Linux servers      | Linux servers        |
