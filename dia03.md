@@ -1,6 +1,7 @@
 1) Importar e inicializar as VMs **E1-SRV-DNS1 (DNS1)** e **E1-SRV-DNS2 (DNS2)**
 
 1.1) Interface 1 em modo bridge (ou nat)
+
 1.2) Interface 2 em modo host only usando a rede de dhcp 192.168.100.0/24
 
 2) Enquanto as VMs são importadas.. vamos criar dois novos hosts, usando os dados da tabela a seguir:
