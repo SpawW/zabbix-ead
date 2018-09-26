@@ -36,6 +36,8 @@
 * **Network/Switchs**
 * **Network/Routers**
 
+> Caso seja necessário o arquivo [/dia03/importa_grupos.xml](/dia03/importa_grupos.xml) poderá ser importado para importar os gurpos e hosts até o momento deste exercício.
+
 4) Clonar o host **dns2** para um novo host com os dados a seguir:
 
 | Propriedade        | Valor                             |
@@ -54,6 +56,8 @@
 | Visible Name       |                                   |
 | Groups             | Servers/Windows                   |
 | Agent Interfaces   | ip: 192.168.100.1                 |
+
+> Caso seja necessário o arquivo [/dia03/windows_servers.xml](/dia03/windows_servers.xml) poderá ser importado para importar os gurpos e hosts até o momento deste exercício.
 
 5) Instalar o agente Zabbix no servidor **dns1** e **dns2**
 
@@ -98,7 +102,6 @@ zabbix_get -s 127.0.0.1 -k'vm.memory.size[total]'
 6.3) Ajustar o arquivo de configuração do **dns1** e **dns2** para aceitar as requisições a partir do servidor que falhou.
 
 ** Ajuste :-D ** 
-
 
 7) Atualizar template 000_ICMP para suportar customização do tempo da trigger de desastre no nível de host
 
