@@ -23,9 +23,11 @@ zabbix_get -s192.168.100.<YYY> -k'agent.version'
 2.1) Criar um novo mapa
 
 **Name** - Mapa DNS
+
 **Minimum trigger severity** - Warning
 
 --- Sharing ---
+
 **User Groups** - DF
 
 2.2) Editar conteúdo do mapa adicionando os hosts DNS1 e DNS2
@@ -39,6 +41,7 @@ zabbix_get -s192.168.100.<YYY> -k'agent.version'
 > Qual a diferença da visualização entre **victor** e **joao** ?
 
 2.2) Importar mapa contendo imagens que serão utilizadas no exercício
+
 > https://raw.githubusercontent.com/zabbix-brasil/livrozabbix2014/master/Capitulo_6/fase_1_mapa_com_imagens.xml
 
 3) Criação de telas
@@ -81,10 +84,13 @@ zabbix_get -s192.168.100.<YYY> -k'agent.version'
 5) Alterar descoberta de rede **Agente Zabbix Apto a ser monitorado** 
 
 **Checks**
+
 * Zabbix agent "system.hostname"	
+
 * Zabbix agent "system.uname"
 
 **Device uniqueness criteria**
+
 * Zabbix agent "system.hostname"
 
 5) Conferir efeitos dos períodos de manutenção criados na aula 04
