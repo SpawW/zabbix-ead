@@ -26,6 +26,11 @@
 
 3) Criar ação para cadastramento automático de hosts na monitoração com o template de monitoramento em Linux
 
-4) Criar ação para adicionar template 101_APACHE nos hosts descobertos através de agente.
+4) Criar ação para adicionar template 101_APACHE nos hosts descobertos através da regra de HTTP.
+
+5) Criar ação para adicionar template 100_Linux nos hosts descobertos através da regra de AGENTE.
+
+6) Alterar ação para adicionar template 000_ICMP nos hosts descobertos através da regra de ICMP.
+
 
 
