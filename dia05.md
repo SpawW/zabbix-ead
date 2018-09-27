@@ -24,6 +24,20 @@ zabbix_get -s192.168.100.<YYY> -k'agent.version'
 
 4) Criar regra de autodescoberta para servidores windows, aplicando o "Template OS Windows"
 
+**Conditions**
+
+**Received value** like **windows**
+
+**Operations**
+
+**Send message to user groups:** Zabbix administrators via all media
+
+**Add to host groups:** DF/Servers/Windows
+
+**Remove from host groups:** Discovered hosts
+
+**Link to templates:** Template OS Windows
+
 5) Conferir efeitos dos períodos de manutenção criados na aula 04
 
 5.1) Para hosts Linux (09:21)
