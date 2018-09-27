@@ -11,9 +11,9 @@
 * [dia04/000_ICMP_Estatisticas.xml](dia04/000_ICMP_Estatisticas.xml)
 * [dia04/000_ICMP.xml](dia04/000_ICMP.xml)
 * [dia04/102_Linux_Security.xml](dia04/102_Linux_Security.xml)
+* [dia04/100_Linux.xml](dia04/100_Linux.xml)
 * [dia04/800_LLD.xml](dia04/800_LLD.xml)
 * [dia04/000_ICMP.xml](dia04/000_ICMP.xml)
-* [dia04/100_Linux.xml](dia04/100_Linux.xml)
 
 2) Regras de descoberta de rede:
 
