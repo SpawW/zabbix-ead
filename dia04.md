@@ -18,8 +18,11 @@
 2) Regras de descoberta de rede:
 
 2.1) Ativos na rede **192.168.100.0/24**
+
 2.2) Ativos na rede do Laboratório físico
+
 2.3) Servidores web (porta 80) na rede **192.168.100.0/24**
+
 2.4) Agente Zabbix pronto para monitoração (rede física e rede virtual)
 
 3) Criar regra de cadastramento automático de hosts na monitoração com o template de monitoramento em Linux
