@@ -16,11 +16,15 @@
 * [dia04/000_ICMP.xml](dia04/000_ICMP.xml)
 * [dia04/100_Linux.xml](dia04/100_Linux.xml)
 
-2) Criar regra de descoberta de rede para localizar automaticamente os servidores na rede **192.168.100.0/24**
+2) Regras de descoberta de rede:
+
+2.1) Ativos na rede **192.168.100.0/24**
+2.2) Ativos na rede do Laboratório físico
+2.3) Servidores web (porta 80) na rede **192.168.100.0/24**
+2.4) Agente Zabbix pronto para monitoração (rede física e rede virtual)
 
 3) Criar regra de cadastramento automático de hosts na monitoração com o template de monitoramento em Linux
 
-4) Criar regra de adição automática de template de monitoração de apache nos servidores com a porta 80 up
-
+4) A
 
 
