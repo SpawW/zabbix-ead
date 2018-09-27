@@ -32,5 +32,9 @@
 
 6) Alterar ação para adicionar template 000_ICMP nos hosts descobertos através da regra de ICMP.
 
+7) Criar ação para notificar sobre incidentes com severidade igual ou superior a **average**
+
+7-1) Separar notificações para usuários do grupo windows e do grupo linux
+
 
 
