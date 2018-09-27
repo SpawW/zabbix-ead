@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
-    <version>3.2</version>
-    <date>2018-09-26T21:06:45Z</date>
+    <version>3.4</version>
+    <date>2018-09-26T23:08:46Z</date>
     <groups>
         <group>
             <name>100 - Linux</name>
@@ -21,23 +21,24 @@
                 <application>
                     <name>Apache</name>
                 </application>
+                <application>
+                    <name>Memoria</name>
+                </application>
             </applications>
             <items>
                 <item>
                     <name>Apache - Memória - $1</name>
                     <type>0</type>
                     <snmp_community/>
-                    <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>proc.mem[{$APACHE_PROCESSO},,,,size]</key>
+                    <key>proc.mem[{$APACHE_PROCESSO},,,,pmem]</key>
                     <delay>10</delay>
-                    <history>90</history>
-                    <trends>365</trends>
+                    <history>90d</history>
+                    <trends>365d</trends>
                     <status>0</status>
                     <value_type>3</value_type>
                     <allowed_hosts/>
                     <units>B</units>
-                    <delta>0</delta>
                     <snmpv3_contextname/>
                     <snmpv3_securityname/>
                     <snmpv3_securitylevel>0</snmpv3_securitylevel>
@@ -45,11 +46,8 @@
                     <snmpv3_authpassphrase/>
                     <snmpv3_privprotocol>0</snmpv3_privprotocol>
                     <snmpv3_privpassphrase/>
-                    <formula>1</formula>
-                    <delay_flex/>
                     <params/>
                     <ipmi_sensor/>
-                    <data_type>0</data_type>
                     <authtype>0</authtype>
                     <username/>
                     <password/>
@@ -65,22 +63,23 @@
                     </applications>
                     <valuemap/>
                     <logtimefmt/>
+                    <preprocessing/>
+                    <jmx_endpoint/>
+                    <master_item/>
                 </item>
                 <item>
                     <name>Processo do Apache - $1</name>
                     <type>0</type>
                     <snmp_community/>
-                    <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>proc.num[{$APACHE_PROCESSO}]</key>
                     <delay>10</delay>
-                    <history>90</history>
-                    <trends>365</trends>
+                    <history>90d</history>
+                    <trends>365d</trends>
                     <status>0</status>
                     <value_type>3</value_type>
                     <allowed_hosts/>
                     <units/>
-                    <delta>0</delta>
                     <snmpv3_contextname/>
                     <snmpv3_securityname/>
                     <snmpv3_securitylevel>0</snmpv3_securitylevel>
@@ -88,11 +87,8 @@
                     <snmpv3_authpassphrase/>
                     <snmpv3_privprotocol>0</snmpv3_privprotocol>
                     <snmpv3_privpassphrase/>
-                    <formula>1</formula>
-                    <delay_flex/>
                     <params/>
                     <ipmi_sensor/>
-                    <data_type>0</data_type>
                     <authtype>0</authtype>
                     <username/>
                     <password/>
@@ -108,6 +104,9 @@
                     </applications>
                     <valuemap/>
                     <logtimefmt/>
+                    <preprocessing/>
+                    <jmx_endpoint/>
+                    <master_item/>
                 </item>
             </items>
             <discovery_rules/>
@@ -115,7 +114,7 @@
             <macros>
                 <macro>
                     <macro>{$APACHE_PROCESSO}</macro>
-                    <value>httpd</value>
+                    <value>apache2</value>
                 </macro>
             </macros>
             <templates/>
