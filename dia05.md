@@ -30,14 +30,21 @@ zabbix_get -s192.168.100.<YYY> -k'agent.version'
 
 2.2) Editar conteúdo do mapa adicionando os hosts DNS1 e DNS2
 
+2.3) Testar visualização com o usuário **joao**
+
+2.4) Editar novamente o mapa com o seu usuário **Super Admin**, adicionando o host **Maquina Windows**
+
+2.3) Testar visualização com o usuário **victor**
+
+> Qual a diferença da visualização entre **victor** e **joao** ?
 
 2.2) Importar mapa contendo imagens que serão utilizadas no exercício
 > https://raw.githubusercontent.com/zabbix-brasil/livrozabbix2014/master/Capitulo_6/fase_1_mapa_com_imagens.xml
 
-
 3) Criação de telas
 
-4) Desativar regras anteriores e criar regra de descoberta de rede separando por sistema operacional:
+
+4) Desativar alertas anteriores e criar novo separando por sistema operacional:
 
 4.1) Para servidores Windows, aplicando o "Template OS Windows"
 
@@ -70,6 +77,15 @@ zabbix_get -s192.168.100.<YYY> -k'agent.version'
 **Remove from host groups:** Discovered hosts
 
 **Link to templates:** Template OS Windows
+
+5) Alterar descoberta de rede **Agente Zabbix Apto a ser monitorado** 
+
+**Checks**
+* Zabbix agent "system.hostname"	
+* Zabbix agent "system.uname"
+
+**Device uniqueness criteria**
+* Zabbix agent "system.hostname"
 
 5) Conferir efeitos dos períodos de manutenção criados na aula 04
 
