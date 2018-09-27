@@ -24,8 +24,8 @@
 
 2.4) Agente Zabbix pronto para monitoração (rede física e rede virtual)
 
-3) Criar regra de cadastramento automático de hosts na monitoração com o template de monitoramento em Linux
+3) Criar ação para cadastramento automático de hosts na monitoração com o template de monitoramento em Linux
 
-4) A
+4) Criar ação para adicionar template 101_APACHE nos hosts descobertos através de agente.
 
 
