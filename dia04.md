@@ -32,9 +32,28 @@
 
 6) Alterar ação para adicionar template 000_ICMP nos hosts descobertos através da regra de ICMP.
 
-7) Criar ação para notificar sobre incidentes com severidade igual ou superior a **average**
+7) Criar ação cadastrar automaticamente servidores a partir do autorregistro dos agentes
 
-7-1) Separar notificações para usuários do grupo windows e do grupo linux
+8) Instalação do agente no windows
+
+https://www.zabbix.com/downloads/3.4.6/zabbix_agents_3.4.6.win.zip
+
+9) Criar ação para notificar sobre incidentes com severidade igual ou superior a **average**
+
+9.1) Separar notificações para usuários do grupo windows e do grupo linux
+
+10) Criar períodos de manutenção
+
+10.1) Para hosts Linux entre 13:00 e 13:10
+
+10.2) Para hosts Windows entre 13:15 e 13:30
+
+11) Criar tipo de midia de "integração" (script)
+
+12) Reconhecimento de eventos
+
+12.1) Escalonamento de notificações sem reconhecimento de eventos
+
 
 
 
