@@ -34,35 +34,6 @@
 
 7) Criar ação cadastrar automaticamente servidores a partir do autorregistro dos agentes
 
-8) Instalação do agente no windows
+8) Criar ação para notificar sobre incidentes com severidade igual ou superior a **average**
 
-https://www.zabbix.com/downloads/3.4.6/zabbix_agents_3.4.6.win.zip
-```
-Server=192.168.100.10
-ListenPort=10050
-StartAgents=3
-ServerActive=192.168.100.10
-Hostname=Maquina Windows
-Timeout=3 
-HostMetadata=windows
-```
-
-9) Criar ação para notificar sobre incidentes com severidade igual ou superior a **average**
-
-9.1) Separar notificações para usuários do grupo windows e do grupo linux
-
-10) Criar períodos de manutenção
-
-10.1) Para hosts Linux entre 13:00 e 13:10
-
-10.2) Para hosts Windows entre 13:15 e 13:30
-
-11) Criar tipo de midia de "integração" (script)
-
-12) Reconhecimento de eventos
-
-12.1) Escalonamento de notificações sem reconhecimento de eventos
-
-
-
-
+8.1) Separar notificações para usuários do grupo windows e do grupo linux
