@@ -22,7 +22,9 @@ zabbix_get -s192.168.100.<YYY> -k'agent.version'
 
 3) Criação de telas
 
-4) Criar regra de autodescoberta para servidores windows, aplicando o "Template OS Windows"
+4) Desativar regras anteriores e criar regra de descoberta de rede separando por sistema operacional:
+
+4.1) Para servidores Windows, aplicando o "Template OS Windows"
 
 **Conditions**
 
@@ -33,6 +35,22 @@ zabbix_get -s192.168.100.<YYY> -k'agent.version'
 **Send message to user groups:** Zabbix administrators via all media
 
 **Add to host groups:** DF/Servers/Windows
+
+**Remove from host groups:** Discovered hosts
+
+**Link to templates:** Template OS Windows
+
+4.2) Para servidores Linux, aplicando o "100 - Linux"
+
+**Conditions**
+
+**Received value** like **linux**
+
+**Operations**
+
+**Send message to user groups:** Zabbix administrators via all media
+
+**Add to host groups:** DF/Servers/Linux
 
 **Remove from host groups:** Discovered hosts
 
