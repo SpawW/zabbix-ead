@@ -55,7 +55,7 @@ _____________________
 3) Criação de telas
 
 _____________________
-4) Desativar alertas anteriores e criar novos separando por sistema operacional:
+4) Desativar ações anteriores e criar novos separando por sistema operacional:
 
 4.1) Para servidores Windows, aplicando o "Template OS Windows"
 
