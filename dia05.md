@@ -3,7 +3,7 @@
 
 https://www.zabbix.com/downloads/3.4.6/zabbix_agents_3.4.6.win.zip
 
-> c:\zabbix\bin\win32\zabbix-agentd.exe -I -c c:\zabbix\conf\zabbix-agentd.conf
+> c:\zabbix\bin\win32\zabbix-agentd.exe -i -c c:\zabbix\conf\zabbix-agentd.conf
 
 ```
 ListenPort=10050
