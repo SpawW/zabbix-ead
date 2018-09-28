@@ -134,8 +134,8 @@ _____________________
 ```
 apt install curl
 wget https://raw.githubusercontent.com/SpawW/zabbix-ead/master/dia05/telegram-notify.sh -O /usr/lib/zabbix/alertscripts/telegram-notify.sh
-chown zabbix: telegram-notify.sh
-chmod +x telegram-notify.sh
+chown zabbix: /usr/lib/zabbix/alertscripts/telegram-notify.sh
+chmod +x /usr/lib/zabbix/alertscripts/telegram-notify.sh
 ```
 > URL para recuperar o ID dos usuários: https://api.telegram.org/bot<<ID>>/getupdates
 
