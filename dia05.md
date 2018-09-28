@@ -97,12 +97,18 @@ _____________________
 * Zabbix agent "system.hostname"
 
 _____________________
-6) Criar tipo de midia de "integração" (script)
-
-_____________________
 7) Reconhecimento de eventos
 
 7.1) Escalonamento de notificações sem reconhecimento de eventos
+
+_____________________
+8) Monitoração ativa vs passiva
+
+8.1) Criar template 101 em modo passivo
+
+8.2) Aplicar a um host
+
+8.3) Parar o processo do Zabbix Server por 5 minutos, retornar e ver os dados retroativos
 
 _____________________
 8) Criação de Slideshow
@@ -110,12 +116,22 @@ _____________________
 _____________________
 ============  Em Paralelo  =============
 
-6) Conferir efeitos dos períodos de manutenção criados na aula 04
+1) Conferir efeitos dos períodos de manutenção criados na aula 04
 
-6.1) Para hosts Linux (09:21)
+1.1) Para hosts Linux (09:21)
 
-6.2) Para hosts Windows (09:16)
+1.2) Para hosts Windows (09:16)
 
+_____________________
+2) Criar tipo de midia de "integração" (script) e configurar usuários para receber notificações desta forma
+
+```
+apt install curl
+wget https://raw.githubusercontent.com/SpawW/zabbix-ead/master/dia05/telegram-notify.sh -O /usr/lib/zabbix/alertscripts/telegram-notify.sh
+chown zabbix: telegram-notify.sh
+chmod +x telegram-notify.sh
+```
+> URL para recuperar o ID dos usuários: https://api.telegram.org/bot660982645:AAGpv4jFqZyFwX7-zMLlGLIx5gqExXmE8Ac/getupdates
 
 
 
