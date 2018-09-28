@@ -110,7 +110,7 @@ _____________________
 _____________________
 8) Monitoração ativa vs passiva
 
-8.1) Criar template 101 em modo passivo
+8.1) Criar template 101 em modo ativo
 
 8.2) Aplicar a um host
 
