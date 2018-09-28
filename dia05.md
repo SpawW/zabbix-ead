@@ -18,6 +18,7 @@ zabbix_get -s192.168.100.<YYY> -k'agent.version'
 ```
 > Verificar o IP da sua estação de trabalho na rede de hostonly (ontem tentei contra o IP de gateway... por isso não estava funcionado... #falhaMinha)
 
+_____________________
 2) Criação de Mapas
 
 2.1) Criar um novo mapa
@@ -44,10 +45,11 @@ zabbix_get -s192.168.100.<YYY> -k'agent.version'
 
 > https://raw.githubusercontent.com/zabbix-brasil/livrozabbix2014/master/Capitulo_6/fase_1_mapa_com_imagens.xml
 
+_____________________
 3) Criação de telas
 
-
-4) Desativar alertas anteriores e criar novo separando por sistema operacional:
+_____________________
+4) Desativar alertas anteriores e criar novos separando por sistema operacional:
 
 4.1) Para servidores Windows, aplicando o "Template OS Windows"
 
@@ -81,6 +83,7 @@ zabbix_get -s192.168.100.<YYY> -k'agent.version'
 
 **Link to templates:** Template OS Windows
 
+_____________________
 5) Alterar descoberta de rede **Agente Zabbix Apto a ser monitorado** 
 
 **Checks**
@@ -93,19 +96,26 @@ zabbix_get -s192.168.100.<YYY> -k'agent.version'
 
 * Zabbix agent "system.hostname"
 
-5) Conferir efeitos dos períodos de manutenção criados na aula 04
-
-5.1) Para hosts Linux (09:21)
-
-5.2) Para hosts Windows (09:16)
-
+_____________________
 6) Criar tipo de midia de "integração" (script)
 
+_____________________
 7) Reconhecimento de eventos
 
-5.1) Escalonamento de notificações sem reconhecimento de eventos
+7.1) Escalonamento de notificações sem reconhecimento de eventos
 
+_____________________
 8) Criação de Slideshow
+
+_____________________
+============  Em Paralelo  =============
+
+6) Conferir efeitos dos períodos de manutenção criados na aula 04
+
+6.1) Para hosts Linux (09:21)
+
+6.2) Para hosts Windows (09:16)
+
 
 
 
