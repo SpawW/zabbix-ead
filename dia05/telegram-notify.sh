@@ -11,7 +11,7 @@ ARQUIVO="/usr/local/share/zabbix/alertscripts/botinfo.txt";
 if [ -f "$ARQUIVO" ]; then
   KEY=$(cat $ARQUIVO);
 else
-  KEY="660982645:AAGpv4jFqZyFwX7-zMLlGLIx5gqExXmE8Ac";
+  KEY="<<ID>>";
 fi
 
 TIMEOUT="5";
