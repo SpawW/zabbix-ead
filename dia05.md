@@ -131,7 +131,7 @@ wget https://raw.githubusercontent.com/SpawW/zabbix-ead/master/dia05/telegram-no
 chown zabbix: telegram-notify.sh
 chmod +x telegram-notify.sh
 ```
-> URL para recuperar o ID dos usuários: https://api.telegram.org/bot660982645:AAGpv4jFqZyFwX7-zMLlGLIx5gqExXmE8Ac/getupdates
+> URL para recuperar o ID dos usuários: https://api.telegram.org/bot<<ID>>/getupdates
 
 
 
