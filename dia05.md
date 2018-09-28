@@ -3,13 +3,16 @@
 
 https://www.zabbix.com/downloads/3.4.6/zabbix_agents_3.4.6.win.zip
 ```
-Server=192.168.100.10
 ListenPort=10050
 StartAgents=3
-ServerActive=192.168.100.10
-Hostname=Maquina Windows
 Timeout=3 
+Hostname=Maquina Windows
 HostMetadata=windows
+
+Server=192.168.100.10
+ServerActive=192.168.100.10
+
+LogFile=c:\zabbix\zabbix-agentd.log
 ```
 
 1.1) Testar se o agente está funcional
