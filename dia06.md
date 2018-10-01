@@ -2,12 +2,19 @@
 
 1) Instalar o proxy a partir dos fontes
 
+> Caso não esteja instalado o sqlite3
+```
+apt install sqlite3
+
+```
+
 ```
 wget https://sourceforge.net/projects/zabbix/files/ZABBIX%20Latest%20Stable/3.4.14/zabbix-3.4.14.tar.gz/download -O /tmp/zabbix.tar.gz
 
 tar zxvf /tmp/zabbix.tar.gz -C /opt/
 
 mkdir /var/lib/sqlite3/
+
 
 sqlite3 /var/lib/sqlite3/zabbix.db < /opt/zabbix-3.4.14/database/sqlite3/schema.sql
 
