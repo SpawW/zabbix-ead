@@ -4,7 +4,7 @@
 
 > Caso não esteja instalado o sqlite3
 ```
-apt install sqlite3 sqlite3.dev
+apt install sqlite3 sqlite3.dev fping
 ```
 
 ```
