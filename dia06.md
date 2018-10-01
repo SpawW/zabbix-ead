@@ -21,9 +21,11 @@ useradd -m -s /bin/bash zabbix
 
 chown -R zabbix:zabbix /var/lib/sqlite3/
 
-/opt/zabbix-3.4.14/configure --enable-proxy --with-sqlite3
+cd /opt/zabbix-3.4.14/
 
-/opt/zabbix-3.4.14/make && /opt/zabbix-3.4.14/make install
+./configure --enable-proxy --with-sqlite3
+
+make && make install
 
 cp /opt/zabbix-3.4.14/misc/init.d/debian/zabbix-agent /usr/local/sbin/zabbix_proxy
 
