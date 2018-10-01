@@ -27,7 +27,7 @@ cd /opt/zabbix-3.4.14/
 
 make && make install
 
-cp /opt/zabbix-3.4.14/misc/init.d/debian/zabbix-agent /usr/local/sbin/zabbix_proxy
+cp /opt/zabbix-3.4.14/misc/init.d/debian/zabbix-agent /etc/init.d/zabbix-proxy
 
 vi /etc/init.d/zabbix-proxy
 
