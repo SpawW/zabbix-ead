@@ -3,7 +3,7 @@
 1) Instalar o proxy a partir dos fontes
 
 ```
-wget https://sourceforge.net/projects/zabbix/files/ZABBIX%20Latest%20Stable/3.4.8/zabbix-3.4.14.tar.gz/download -O /tmp/zabbix.tar.gz
+wget https://sourceforge.net/projects/zabbix/files/ZABBIX%20Latest%20Stable/3.4.14/zabbix-3.4.14.tar.gz/download -O /tmp/zabbix.tar.gz
 
 tar zxvf /tmp/zabbix.tar.gz -C /opt/
 
