@@ -127,3 +127,9 @@ SNMPTrapperFile=/tmp/zabbix_traps.tmp
 service zabbix-proxy restart
 
 ps -ef | grep snmptr
+
+
+
+# Teste da trap
+
+snmptrap -v 1 -c public 127.0.0.1 '.1.3.6.1.6.3.1.1.5.3' '127.0.0.1'
