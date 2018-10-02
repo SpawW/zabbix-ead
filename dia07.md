@@ -47,9 +47,9 @@ rocommunity public 192.168.100.0/24
 
 > Salvar e reiniciar e testar o deamon do SNMP
 
-``
+```
 /etc/init.d/snmpd restart
 
 snmpwalk -v 2c -c public 192.168.100.14
 
-``
+```
