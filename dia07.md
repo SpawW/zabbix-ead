@@ -16,13 +16,13 @@ make && make install
 
 service zabbix-proxy restart
 ```
->> Passo Adicional necessário
-> Editar o arquivo /etc/snmp/snmp.conf 
-Comentar a linha
-```
-mibs :
-```
+>>> Passo Adicional necessário ===================================================================
+>>> Editar o arquivo /etc/snmp/snmp.conf 
 
+Alterar a linha :
+mibs :
+Para:
+#mibs :
 
 # Comandos de teste
 
@@ -34,11 +34,11 @@ whereis snmpwalk
 snmpwalk -v2c -c public  192.168.100.13
 ```
 
-
->> No servidor DNS2 (192.168.100.14)
+# No servidor DNS2 (192.168.100.14)
 
 ```
-aptitude update && aptitude upgrade && aptitude install snmpd libsnmp-dev
+aptitude update && aptitude upgrade
+aptitude install snmpd libsnmp-dev
 
 ```
 
@@ -86,14 +86,14 @@ net-snmp-config --create-snmpv3-user -a unirede! zabbix_snmp
 
 ```
 
-
-* Em DNS1
-
+* A partir do servidor DNS1, verificar se o SNMPD do DNS2 está respondendo via SNMPv3
 
 ```
-snmpwalk -v 3 -a md5 -A unirede! -l authNoPriv -u zabbix_snmp 192.168.100.14
+snmpwalk -v 3 -a md5 -A unirede! -l authNoPriv -u zabbix_snmp 192.168.100.14 sysName.0
 
 ```
+
+# Habilitando SNMPTrap no servidor DNS1
 
 aptitude install snmpd snmptrapd snmptt
 
