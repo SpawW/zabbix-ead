@@ -114,4 +114,14 @@ TRAPDRUN=yes
 
 
 
+# Editar o Proxy
+vi /usr/local/etc/zabbix_proxy.conf
 
+StartSNMPTrapper=1
+
+SNMPTrapperFile=/tmp/zabbix_traps.tmp
+
+
+service zabbix-proxy restart
+
+ps -ef | grep snmptr
