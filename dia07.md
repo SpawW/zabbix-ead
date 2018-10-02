@@ -30,7 +30,7 @@ snmpwalk -v2c -c public  192.168.100.13
 >> No servidor DNS2 (192.168.100.14)
 
 ```
-aptitude update && aptitude upgrade && aptitude install snmpd
+aptitude update && aptitude upgrade && aptitude install snmpd libsnmp-dev
 
 ```
 
@@ -63,6 +63,8 @@ snmpwalk -v 2c -c public 192.168.100.14
 ```
 
 * Criar o usuário para uso do snmp v3
+
+#apt-get install libsnmp-dev
 
 ```
 net-snmp-config --create-snmpv3-user -a unirede! zabbix_snmp
