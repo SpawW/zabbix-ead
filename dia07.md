@@ -158,20 +158,3 @@ snmptrap -v 1 -c public 127.0.0.1 '.1.3.6.1.6.3.1.1.5.3' '127.0.0.1' 6 33 '55' .
 service snmptrapd restart
 netstat -puan | grep snmptrapd
 ```
-
-# Criptografia
-
-> DNS1
-
-aptitude install libssl-dev
-
-cd /opt/zabbix-3.4.14
-
-./configure --enable-agent --with-openssl
-
-make && make install
-
-./configure --enable-proxy --with-sqlite3 --with-net-snmp --with-openssl
-
-make && make install
-
