@@ -86,3 +86,31 @@ net-snmp-config --create-snmpv3-user -a unirede! zabbix_snmp
 snmpwalk -v 3 -a md5 -A unirede! -l authNoPriv -u zabbix_snmp 192.168.100.14
 
 ```
+
+aptitude install snmpd snmptrapd snmptt
+
+
+>> vi /etc/snmp/snmptrapd.conf
+
+authCommunity log,execute,net public
+
+perl do "/usr/bin/zabbix_trap_receiver.pl";
+
+cp /opt/zabbix-3.4.14/misc/snmptrap /usr/bin/
+
+>> vi /etc/snmp/snmptt.conf
+
+EVENT general .* "General event" Normal
+FORMAT ZBXTRAP $aA $ar
+
+
+>> vi /etc/default/snmptrapd
+
+Alterar a linha :
+TRAPDRUN=no
+Para:
+TRAPDRUN=yes
+
+
+
+
