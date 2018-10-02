@@ -101,6 +101,7 @@ cp /opt/zabbix-3.4.14/misc/snmptrap /usr/bin/
 >> vi /etc/snmp/snmptt.conf
 
 EVENT general .* "General event" Normal
+
 FORMAT ZBXTRAP $aA $ar
 
 
