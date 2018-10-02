@@ -8,6 +8,8 @@ cd /opt/zabbix-3.4.14
 
 ./configure --help | grep -i snmp
 
+make && make install
+
 
 # Comandos de teste
 
