@@ -83,6 +83,6 @@ net-snmp-config --create-snmpv3-user -a unirede! zabbix_snmp
 
 
 ```
-snmpwalk -v 3 -a md5 -A unirede! -l authNoPriv -u zabbix_snmp 192.168.100.13
+snmpwalk -v 3 -a md5 -A unirede! -l authNoPriv -u zabbix_snmp 192.168.100.14
 
 ```
