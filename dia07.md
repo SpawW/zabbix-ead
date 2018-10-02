@@ -96,7 +96,9 @@ authCommunity log,execute,net public
 
 perl do "/usr/bin/zabbix_trap_receiver.pl";
 
-cp /opt/zabbix-3.4.14/misc/snmptrap /usr/bin/
+
+cp /opt/zabbix-3.4.14/misc/snmptrap/* /usr/bin/
+
 
 >> vi /etc/snmp/snmptt.conf
 
