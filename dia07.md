@@ -53,3 +53,18 @@ rocommunity public 192.168.100.0/24
 snmpwalk -v 2c -c public 192.168.100.14
 
 ```
+
+>> Habilitando SNMPv3 em DNS
+
+* Parando o serviço snmpd
+
+/etc/init.d/snmpd stop
+
+*Criar o usuário para uso do snmp v3
+
+net-snmp-config --create-snmpv3-user -a unirede! zabbix_snmp
+
+* Inicie novamente o serviço snmpd
+
+/etc/init.d/snmpd start
+
