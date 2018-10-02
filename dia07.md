@@ -1,5 +1,6 @@
 >> No servidor DNS1 (192.168.100.13)
 
+```
 aptitude install -y snmp libsnmp-dev libnet-snmp-perl snmp-mibs-downloader php5-snmp
 
 export MIBS=/usr/share/mibs
@@ -13,14 +14,18 @@ cd /opt/zabbix-3.4.14
 make && make install
 
 service zabbix-proxy restart
+```
 
 # Comandos de teste
 
+```
 whatis snmpwalk
 
 whereis snmpwalk
 
 snmpwalk -v2c -c public  192.168.100.13
+```
+
 
 >> No servidor DNS2 (192.168.100.14)
 
@@ -40,5 +45,9 @@ rocommunity public 192.168.100.0/24
 #rocommunity public localhost
 ```
 
-> Salvar e reiniciar o deamon do SNMP
-#/etc/init.d/snmpd restart
+> Salvar e reiniciar e testar o deamon do SNMP
+
+`
+/etc/init.d/snmpd restart
+snmpwalk -v 2c -c public 192.168.100.14
+`
