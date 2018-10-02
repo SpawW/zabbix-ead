@@ -10,6 +10,7 @@ cd /opt/zabbix-3.4.14
 
 make && make install
 
+service zabbix-proxy restart
 
 # Comandos de teste
 
