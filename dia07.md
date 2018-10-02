@@ -49,5 +49,6 @@ rocommunity public 192.168.100.0/24
 
 `
 /etc/init.d/snmpd restart
+
 snmpwalk -v 2c -c public 192.168.100.14
 `
