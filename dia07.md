@@ -1,4 +1,5 @@
->> No servidor DNS1 (192.168.100.13)
+# Habilitando o Zabbix para snmp por "nomes"
+>> No servidor DNS1 (192.168.100.13) e no Zabbix Server (192.168.100.10)
 
 ```
 aptitude install -y snmp libsnmp-dev libnet-snmp-perl snmp-mibs-downloader php5-snmp
@@ -15,6 +16,13 @@ make && make install
 
 service zabbix-proxy restart
 ```
+>> Passo Adicional necessário
+> Editar o arquivo /etc/snmp/snmp.conf 
+Comentar a linha
+```
+mibs :
+```
+
 
 # Comandos de teste
 
