@@ -102,11 +102,13 @@ aptitude install snmpd snmptrapd snmptt
 
 authCommunity log,execute,net public
 
+authCommunity log,execute,net TRF01
+
 perl do "/usr/bin/zabbix_trap_receiver.pl";
 
 
 cp /opt/zabbix-3.4.14/misc/snmptrap/* /usr/bin/
-
+chmod +x /usr/bin/zabbix_trap_receiver.pl
 
 >> vi /etc/snmp/snmptt.conf
 
@@ -136,11 +138,26 @@ service zabbix-proxy restart
 
 ps -ef | grep snmptr
 
+>>> Passo Adicional necessário ===================================================================
+>>> Criar o arquivo temporário do trapper
+```
+touch /tmp/zabbix_traps.tmp
+chown zabbix: /tmp/zabbix_traps.tmp
 
+```
 
-# Teste da trap
+# Teste da trap no arquivo temporário
 
 snmptrap -v 1 -c public 127.0.0.1 '.1.3.6.1.6.3.1.1.5.3' '127.0.0.1' 6 33 '55' .1.3.6.1.6.3.1.1.5.3 s “teststring000”
+
+# Adicionar os itens de trap
+
+# Reiniciar o snmptrap
+
+```
+service snmptrapd restart
+netstat -puan | grep snmptrapd
+```
 
 # Criptografia
 
@@ -157,3 +174,4 @@ make && make install
 ./configure --enable-proxy --with-sqlite3 --with-net-snmp --with-openssl
 
 make && make install
+
