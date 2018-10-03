@@ -81,17 +81,25 @@ service zabbix-server restart
 * Gerar chaves SSH para o usuário zabbix
 
 ```
+
 ssh-keygen -t rsa -b 4096 -C "zabbix@company" -f /home/zabbix/.ssh/id_rsa
+
+chown zabbix: /home/zabbix/.ssh/ -R
+
 ```
 
 
 * Copiar chaves pública para o servidor de destino
 
 ```
-ssh-copy-id -i /home/zabbix/.ssh/id_rsa.pub zabbix.ssh@127.0.0.1
+# Trocar localhost pelo ip do servidor
+ssh-copy-id -i /home/zabbix/.ssh/id_rsa.pub zabbix.ssh@localhost
 
 # Verificar se a chave foi adicionada
 cat /home/zabbix.ssh/.ssh/authorized_keys 
+
+# Testar o acesso | Trocar localhost pelo ip do servidor
+ssh -i /home/zabbix/.ssh/id_rsa zabbix.ssh@localhost
 
 ```
 
