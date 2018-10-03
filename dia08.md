@@ -110,13 +110,17 @@ zabbix_get -s127.0.0.1 -k'agent.hostname' --tls-connect=psk --tls-psk-identity="
 
 >> Comando para recuperar a chave PSK gerada no zabbix_server: cat /home/zabbix/zabbix_agentd.psk
 
+> Parâmetros de configuração do Agente no Zabbix
+
 **Connections to host**: PSK
+
 **Conections from host**: PSK
+
 **PSK Identity**: PSK 001
+
 **PSK**: <<Chave PSK gerada>>
 
   
-
 
 
 
