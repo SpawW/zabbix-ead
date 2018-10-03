@@ -93,7 +93,9 @@ snmpwalk -v 3 -a md5 -A unirede! -l authNoPriv -u zabbix_snmp 192.168.100.14 sys
 
 # Habilitando SNMPTrap no servidor DNS1
 
+```
 aptitude install snmpd snmptrapd snmptt
+```
 
 
 >> vi /etc/snmp/snmptrapd.conf
@@ -104,9 +106,10 @@ authCommunity log,execute,net TRF01
 
 perl do "/usr/bin/zabbix_trap_receiver.pl";
 
-
+```
 cp /opt/zabbix-3.4.14/misc/snmptrap/* /usr/bin/
 chmod +x /usr/bin/zabbix_trap_receiver.pl
+```
 
 >> vi /etc/snmp/snmptt.conf
 
