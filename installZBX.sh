@@ -162,6 +162,7 @@ fi
 
 message "Criando binários do zabbix-server e zabbix-agent";
 if [ $PROXY == "S" ]; then
+  cd "$SOURCE_PATH";
   sudo ./configure --enable-proxy --with-openssl --with-sqlite3 --enable-ipv6 --with-net-snmp --with-libcurl --with-libxml2 --with-openssl
   sudo make install
   sudo curl -L "https://raw.githubusercontent.com/bezarsnba/zabbixscript/master/zabbix-agent" -o /etc/init.d/zabbix-proxy
