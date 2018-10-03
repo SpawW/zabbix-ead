@@ -41,4 +41,40 @@ mkdir /home/zabbix/
 openssl rand -hex 32 | tee /home/zabbix/zabbix_agentd.psk
 chown zabbix: -R /home/zabbix
 ```
-> Ajustar configuração do 
+
+> Criar arquivo de configuração do agente em modo criptografado e a execução de comandos remotos
+
+>> vi /etc/zabbix/zabbix_agentd.d/security.conf
+
+```
+# Arquivo de log do zabbix agent
+LogFile=/tmp/zabbix_agentd.log 
+# Uso de comandos remotos habilitado
+EnableRemoteCommands=1 
+# Log de comandos remotos habilitado
+LogRemoteCommands=1 
+
+# Aceitar conexões passivas do zabbix_server e de localhost
+Server=192.168.100.10,192.168.100.13,127.0.0.1 
+# Endereço do Zabbix Server
+ServerActive=192.168.100.10,192.168.100.13 
+# Hostname do frontend
+Hostname=dns1
+
+# ------ Criptografia ------------
+# Como o zabbix agent deve se conectar ao zabbix server (ou proxy)
+TLSConnect=psk
+# Tipo de conexões TLS aceitas vindas do zabbix server (ou proxy)
+TLSAccept=psk 
+# Nome único que identificará a Pre-Shared Key - PSK
+TLSPSKIdentity=PSK 001 
+# Caminho completo do arquivo que contém a PSK
+TLSPSKFile=/home/zabbix/zabbix_agentd.psk
+```
+>> Reiniciar o agente e testar a chave agent.hostname
+
+```
+zabbix_get -s127.0.0.1 -k'agent.hostname'
+```
+
+
