@@ -42,7 +42,7 @@ ssh root@192.168.100.14 'chown -R zabbix: /home/zabbix'
 
 ```
 
-> Habilitar criptografia no proxy (DNS1)
+> Habilitar criptografia no proxy (DNS1) (pois foi compilado dos fontes)
 ```
 aptitude install libssl-dev
 cd /opt/zabbix-3.4.14
@@ -51,7 +51,7 @@ make && make install
 service zabbix-proxy restart
 ```
 
-> Habilitar criptografia no DNS1
+> Habilitar criptografia no DNS1 (pois foi compilado dos fontes)
 
 ```
 aptitude install libssl-dev
