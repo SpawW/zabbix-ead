@@ -136,8 +136,9 @@ SNMPTrapperFile=/tmp/zabbix_traps.tmp
 
 
 service zabbix-proxy restart
+service snmptrapd restart
 
-ps -ef | grep snmptr
+ps -ef | grep snmptt
 
 >>> Passo Adicional necessário ===================================================================
 >>> Criar o arquivo temporário do trapper
