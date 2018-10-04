@@ -19,13 +19,17 @@ avg("icmppingsec[,{$QTD_PING},200,,{$TIMEOUT_PING},avg]",300)
 
 > Verificar qual o intervalo entre verificações de interfaces de rede e sistemas de arquivos, proceder com ajustes necessários
 
-> Criar template **102 - Statistical** 
+> Criar template **103 - Statistical** 
 
-> Criar item agregado para o **máximo de tráfego de entrada** na interface **eth0** no grupo de hosts **DF/Servers/Linux**
+> Criar item agregado para o **máximo de tráfego de entrada** na interface **eth0** no grupo de hosts **Servers/Linux**
 
-> Criar item agregado para a **média de tráfego de entrada** na interface **eth0** no grupo de hosts **DF/Servers/Linux**
+```
+grpmax["Servers/Linux","net.if.in[eth1]",last,0]
+```
+
+> Criar item agregado para a **média de tráfego de entrada** na interface **eth0** no grupo de hosts **Servers/Linux**
 
 > Criar gráfico **Dados agrupados de tráfego** com os dados agregados
 
-> Associar o host **df-01** ao template **102 - Statistical**
+> Associar o host **df-01** ao template **103 - Statistical**
 
