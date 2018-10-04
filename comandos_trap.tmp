@@ -1,0 +1,51 @@
+
+apt-get install snmpd snmptt snmptrapd net-tools
+
+cd /tmp/install/
+wget https://sourceforge.net/projects/zabbix/files/ZABBIX%20Latest%20Stable/3.4.14/zabbix-3.4.14.tar.gz
+tar -xvzf zabbix3.4.14.tar.gz
+
+vi /etc/snmp/snmptrapd.conf
+echo "authCommunity log,execute,net public" >> /etc/snmp/snmptrapd.conf
+echo "authCommunity log,execute,net TRF01" >> /etc/snmp/snmptrapd.conf
+echo 'perl do "/usr/bin/zabbix_trap_receiver.pl";' >> /etc/snmp/snmptrapd.conf
+
+cp /tmp/install/zabbix-3.4.14/misc/snmptrap/zabbix_trap_receiver.pl /usr/bin/
+chmod +x /usr/bin/zabbix_trap_receiver.pl
+
+echo 'EVENT general .* "General event" Normal' > /etc/snmp/snmptt.conf
+echo 'FORMAT ZBXTRAP $aA $ar' > /etc/snmp/snmptt.conf
+
+vi /etc/default/snmpd
+
+sed -i 's/TRAPDRUN=no/TRAPDRUN=yes/g' /etc/default/snmpd
+
+De: TRAPDRUN=no
+Para: TRAPDRUN=yes
+
+#systemctl restart snmpd.service
+service snmpd restart
+
+
+
+#/etc/init.d/snmptrapd restart && netstat -puan | grep snmptrapd
+
+service snmptrapd restart && netstat -puan | grep snmptrapd
+
+echo "StartSNMPTrapper=1" > /usr/local/etc/zabbix_server.conf.d/snmp_trapper.conf
+echo "SNMPTrapperFile=/tmp/zabbix_traps.tmp" >> /usr/local/etc/zabbix_server.conf.d/snmp_trapper.conf
+
+echo "Include=/usr/local/etc/zabbix_server.conf.d/*.conf" >> /usr/local/etc/zabbix_server.conf
+service zabbix-server restart | service zabbix-server status
+
+ps -ef | grep "snmp trapper"
+
+#Conferir destino da trap
+cat /usr/bin/zabbix_trap_receiver.pl | grep SNMPTrapperFile
+
+snmptrap -v 1 -c public 127.0.0.1 '.1.3.6.1.6.3.1.1.5.3'   '127.0.0.1'    6 33 '55' .1.3.6.1.6.3.1.1.5.3 s “teststring000”
+
+snmptrap -v 1 -c public 127.0.0.1  '.1.3.6.1.6.3.1.1.5.3'   '192.168.100.14'    6 33 '55' .1.3.6.1.6.3.1.1.5.3 s "teststring000"
+
+
+
