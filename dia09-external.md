@@ -40,5 +40,5 @@ zabbix_sender -z 127.0.0.1 -p 10051 -s "df-01" -k "bkp.diario.status" -o "Backup
 # Trigger Prediction
 
 ```
-{100_Linux:vfs.fs.inode[{#FSNAME},pfree].forecast(24h,,24h)}<20
+{801_Sistema_Arquivos:vfs.fs.size[{#FSNAME},pfree].forecast(24h,,24h)}<20
 ```
