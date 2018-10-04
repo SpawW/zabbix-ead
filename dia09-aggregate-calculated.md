@@ -2,6 +2,11 @@
 
 > Criar itens calculados com a **média de tempo de resposta do ICMP** no template **000 - ICMP**, em visão de 5, 10 e 20 minutos
 
+```
+avg("icmppingsec[,{$QTD_PING},200,,{$TIMEOUT_PING},avg]",300)
+```
+
+
 > Criar gráfico **Comparativo de resposta ICMP** comparando os tempos de respostas brutos com suas médias
 
 > Criar itens calculados com a **média de tempo de resposta do ICMP a meia hora atrás** no template **000 - ICMP**, em visão de 5 minutos
