@@ -37,3 +37,8 @@ zabbix_sender -z 127.0.0.1 -p 10051 -s "df-01" -k "bkp.diario.status" -o "Backup
 
 **Expression**: {003 - Zabbix Trapper:bkp.diario.status.nodata(24h)}=1
 
+# Trigger Prediction
+
+```
+{100_Linux:vfs.fs.inode[{#FSNAME},pfree].forecast(24h,,24h)}<20
+```
