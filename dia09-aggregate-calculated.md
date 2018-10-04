@@ -1,3 +1,9 @@
+# Preparação e verificação de agendamento de item em LLD
+
+> Associar os hosts existentes em **DF/Servers/Linux** ao template **100 - Linux**
+
+> Verificar qual o intervalo entre verificações de interfaces de rede e sistemas de arquivos, proceder com ajustes necessários (templates 801 e 802)
+
 # Itens calculados
 
 > Criar itens calculados com a **média de tempo de resposta do ICMP** no template **000 - ICMP**, em visão de 5, 10 e 20 minutos
@@ -14,10 +20,6 @@ avg("icmppingsec[,{$QTD_PING},200,,{$TIMEOUT_PING},avg]",300)
 > Ajustar gráfico adicionando a estatística com tempo deslocado
 
 # Itens agregados
-
-> Associar os hosts existentes em **DF/Servers/Linux** ao template **100 - Linux**
-
-> Verificar qual o intervalo entre verificações de interfaces de rede e sistemas de arquivos, proceder com ajustes necessários
 
 > Criar template **103 - Statistical** 
 
