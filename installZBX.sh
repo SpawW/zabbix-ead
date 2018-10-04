@@ -26,18 +26,38 @@ function message() {
     echo -e "\e[36m==>\e[37m $1 \e[39m";
 }
 
+function checkAndDownload() {
+  remote_file="$1"
+  local_file="$2"
+
+  modified=$(curl --silent --head $remote_file | \
+             awk '/^Last-Modified/{print $0}' | \
+             sed 's/^Last-Modified: //')
+  remote_ctime=$(date --date="$modified" +%s)
+  local_ctime=$(stat -c %z "$local_file")
+  local_ctime=$(date --date="$local_ctime" +%s)
+#set -x;
+  if [ ! -f $2 ] || [ $local_ctime -lt $remote_ctime ]; then
+    message "Adquirindo '$1'."
+    curl -L "$URL_DOWN" -o zabbix.tgz
+  else
+    message "A origem remota '$1' possui o mesmo arquivo local '$2', download ignorado."
+  fi
+#set +x
+}
+
 # Enable install parts (for debug propouses) -----------------------------------
 INSTALL_MYSQL="S";
 INSTALL_PKG="S";
 INSTALL_HTTP="S";
-DOWNLOAD_SOURCE="N";
+DOWNLOAD_SOURCE="S";
 
-INSTALL_ZBX_DB="N";
-CONFIGURE_APACHE="N";
-CREATE_USER="N";
-CREATE_FRONTEND="N";
-SERVER="N";
-SERVICES="N";
+INSTALL_ZBX_DB="S";
+CONFIGURE_APACHE="S";
+CREATE_USER="S";
+CREATE_FRONTEND="S";
+SERVER="S";
+SERVICES="S";
 PROXY="S";
 
 
@@ -56,7 +76,7 @@ INSTALLNAME="PRTE - Zabbix - EveryZ";
 
 message "Atualizando pacotes do S.O.";
 sudo apt update -y
-sudo apt install -y curl vim
+sudo apt install -y curl vim screen
 
 if [ ! -d "/tmp/install/" ]; then
    mkdir /tmp/install/
@@ -70,17 +90,18 @@ if [ $INSTALL_MYSQL == "S" ]; then
   sudo apt -y install mysql-server
 fi
 
-message "Instalando dependencias";
 if [ $INSTALL_PKG == "S" ]; then
-  sudo apt -y install libmysqlclient-dev gcc libxml2-utils libxml2-dev libsnmp-dev libevent-dev libcurl4-gnutls-dev libpcre3-dev make wget curl fping
+  message "Instalando dependencias";
+  sudo apt -y install default-libmysqlclient-dev gcc libxml2-utils libxml2-dev libsnmp-dev libevent-dev libcurl4-gnutls-dev libpcre3-dev make wget curl fping snmp libsnmp-dev libnet-snmp-perl snmp-mibs-downloader snmpd snmptrapd snmptt net-tools libssl-dev
 fi
 
-message "Instalando Apache e PHP";
 if [ $INSTALL_HTTP == "S" ]; then
-  sudo apt -y install apache2 php7.0 php7.0-common php7.0-mcrypt php7.0-bcmath php7.0-gd php7.0-xml php7.0-mysql  php7.0-mbstring libapache2-mod-php7.0  php7.0-ldap
+  message "Instalando Apache e PHP";
+  sudo apt -y install apache2 php7.0 php7.0-common php7.0-mcrypt php7.0-bcmath php7.0-gd php7.0-xml php7.0-mysql  php7.0-mbstring libapache2-mod-php7.0  php7.0-ldap php7.0-snmp
 fi
 
-if [ $CONFIGURE_APACHE == "S" ]; then
+if [ $CONFIGURE_APACHE == "S" ] && [ ! -f /etc/apache2/sites-enabled/zabbix.conf ]; then
+  message "Configurando apache";
   if [ -f "/etc/apache2/sites-enabled/000-default.conf" ]; then
     sudo rm /etc/apache2/sites-enabled/000-default.conf;
   fi
@@ -108,12 +129,13 @@ if [ $DOWNLOAD_SOURCE == "S" ]; then
   URL_DOWN="https://ufpr.dl.sourceforge.net/project/zabbix/ZABBIX%20Latest%20Stable/$ZBX_VER/zabbix-$ZBX_VER.tar.gz";
   message "Download do codigo fonte do zabbix ($URL_DOWN)";
   cd "/tmp/install"
-  curl -L "$URL_DOWN" -o zabbix.tgz
+  checkAndDownload "$URL_DOWN" "zabbix.tgz"
+  #curl -L "$URL_DOWN" -o zabbix.tgz
   message "Descompactando codigo fonte do zabbix...";
   tar -xzf zabbix.tgz
 fi
 
-if [ $INSTALL_ZBX_DB == "S" ]; then
+if [ $INSTALL_ZBX_DB == "S" ] && [ ! -f /tmp/install/dbok.log ]; then
   message "Criando banco de dados e usuário para o zabbix";
   mysql -u root -p$MYSQL_ROOT_PASS -e " create database zabbix character set utf8 collate utf8_bin; grant all privileges on zabbix.* to zabbix@localhost identified by '$ZABBIX_DB_PASS'";
   cd "$SOURCE_PATH"
@@ -123,12 +145,19 @@ if [ $INSTALL_ZBX_DB == "S" ]; then
   cat database/mysql/images.sql | mysql -u $DBUSER -p$ZABBIX_DB_PASS $DBNAME;
   message "ZabbixDB - Adicionado dados default";
   cat database/mysql/data.sql | mysql -u $DBUSER -p$ZABBIX_DB_PASS $DBNAME;
+  touch /tmp/install/dbok.log
+else
+  message "ZabbixDB - Banco ja inicializado!"
 fi
 
 message "Criando usuario Zabbix no sistema operacional";
 if [ $CREATE_USER == "S" ]; then
-  sudo groupadd zabbix
-  sudo useradd -g zabbix zabbix
+  #if [ getent passwd "zabbix" > /dev/null 2>&1 ]; then
+    sudo groupadd zabbix
+    sudo useradd -g zabbix zabbix
+  #else
+  #  message "Usuario zabbix ja criado"
+  #fi
 fi
 
 message "Configurando frontend do Zabbix";
@@ -160,37 +189,48 @@ global \$DB;
   sudo chown -R www-data $WWW_PATH
 fi
 
-message "Criando binários do zabbix-server e zabbix-agent";
-if [ $PROXY == "S" ]; then
-  cd "$SOURCE_PATH";
-  sudo ./configure --enable-proxy --with-openssl --with-sqlite3 --enable-ipv6 --with-net-snmp --with-libcurl --with-libxml2 --with-openssl
-  sudo make install
+if [ $PROXY == "S" ] && ( [ ! -f /usr/local/sbin/zabbix_proxy ] || [ `zabbix_proxy --version | head -n1 | awk '{print $3}'` != "$ZBX_VER" ]); then
+  message "Instalando pre-requisitos do zabbix-proxy";
+  sudo apt install -y sqlite3 sqlite3.dev
+  message "Configurando zabbix-proxy";
+  cd $SOURCE_PATH;
+  sudo ./configure --enable-proxy --with-openssl --with-sqlite3 --enable-ipv6 --with-net-snmp --with-libcurl --with-libxml2 --with-openssl &> /tmp/install/configure_proxy.log
+  tail -n 26 /tmp/install/configure_proxy.log | head -n 18
+  message "Instalando binario do zabbix-proxy";
+  sudo make install  &> /tmp/install/make_proxy.log
+  tail /tmp/install/make_proxy.log
   sudo curl -L "https://raw.githubusercontent.com/bezarsnba/zabbixscript/master/zabbix-agent" -o /etc/init.d/zabbix-proxy
+  sed -i 's/agentd/proxy/g' /etc/init.d/zabbix-proxy
+  sed -i 's/agent/proxy/g' /etc/init.d/zabbix-proxy
   sudo chmod 755 /etc/init.d/zabbix-proxy
   sudo update-rc.d zabbix-proxy defaults
-  sudo systemctl enable zabbix-proxy
+  #message "Iniciando servicos";
+  #sudo service zabbix-proxy restart
 fi
 
-message "Criando binários do zabbix-server e zabbix-agent";
-if [ $SERVER == "S" ]; then
+if [ $SERVER == "S" ]  && ( [ ! -f /usr/local/sbin/zabbix_server ] ||  [ `zabbix_server --version | head -n1 | awk '{print $3}'` != "$ZBX_VER" ]); then
+  message "Configurando zabbix-server e zabbix-agent";
   cd $SOURCE_PATH;
-  sudo ./configure --enable-server --enable-agent --with-mysql --enable-ipv6 --with-net-snmp --with-libcurl --with-libxml2
-  sudo make install
+  sudo ./configure --enable-server --enable-agent --with-mysql --enable-ipv6 --with-net-snmp --with-libcurl --with-libxml2 &> /tmp/install/configure_server.log
+  tail -n40 /tmp/install/configure_server.log | head -n 32
+
+  message "Instalando binarios do zabbix-server e zabbix-agent";
+  sudo make install  &> /tmp/install/make_server.log
+  tail /tmp/install/make_server.log
+
   sudo curl -L "https://raw.githubusercontent.com/bezarsnba/zabbixscript/master/zabbix-server" -o /etc/init.d/zabbix-server
   sudo curl -L "https://raw.githubusercontent.com/bezarsnba/zabbixscript/master/zabbix_server.conf" -o /usr/local/etc/zabbix_server.conf
 
   sudo chmod 755 /etc/init.d/zabbix-server
   sudo update-rc.d zabbix-server defaults
-  sudo systemctl enable zabbix-server
+  #sudo systemctl enable zabbix-server
   sudo curl -L "https://raw.githubusercontent.com/bezarsnba/zabbixscript/master/zabbix-agent" -o /etc/init.d/zabbix-agent
   sudo chmod 755 /etc/init.d/zabbix-agent
   sudo update-rc.d zabbix-agent defaults
-  sudo systemctl enable zabbix-agent
-fi
 
-if [ $SERVICES == "S" ]; then
-  message "Iniciando Zabbix Server";
-  sudo systemctl restart zabbix-server
-  sudo systemctl restart zabbix-agent
+  message "Iniciando zabbix-server";
+  sudo service zabbix-server restart
+  message "Iniciando zabbix-agent";
+  sudo service zabbix-agent restart
+
 fi
-exit;
